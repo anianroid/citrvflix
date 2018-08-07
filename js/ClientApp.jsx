@@ -1,42 +1,27 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Landing from './Landing';
+import Search from './Search';
 
-const ce = React.createElement;
+const FourOhFour = () => (
+  <h1>
+    <span>404</span>
+  </h1>
+);
 
-const MyTitle = function myTitleComponent(props) {
-  return ce(
-    'div',
-    null,
-    ce(
-      'h1',
-      {
-        style: {
-          color: props.color
-        }
-      },
-      props.title
-    )
-  );
-};
+// Switch to render exactly one component and make sure 404 component is the last one
 
-const MyFirstComponent = function myFirstComponent() {
-  return ce(
-    'div',
-    { id: 'my-first-component' },
-    ce(MyTitle, {
-      title: 'Game of Thrones',
-      color: 'YellowGreen'
-    }),
-    ce(MyTitle, {
-      title: 'Stranger Things',
-      color: 'GreenYellow'
-    }),
-    ce(MyTitle, { title: 'Rick and Morty', color: 'LimeGreen' }),
-    ce(MyTitle, {
-      title: 'House of Cards',
-      color: 'peru'
-    })
-  );
-};
+const App = () => (
+  <BrowserRouter>
+    <div className="app">
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route path="/search" component={Search} />
+        <Route component={FourOhFour} />
+      </Switch>
+    </div>
+  </BrowserRouter>
+);
 
-render(ce(MyFirstComponent), document.getElementById('app'));
+render(<App />, document.getElementById('app'));
