@@ -1,14 +1,22 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
 	context: __dirname, // run this from anywhere and it runs it form the root directory (__dirname is a ndoe global variable that refers to the root of your project)
-	entry: './js/ClientApp.jsx',
+	entry: [
+		'react-hot-loader/patch',
+		'webpack-dev-server/client?http://localhost:8080',
+		'webpack/hot/only-dev-server',
+		'./js/ClientApp.jsx'
+	],
 	devtool: 'cheap-eval-source-map', // when an error is pointed out, it shows the actual source where it has gone wrong than in the bundled code (there are more different kinds of source maps like this : eg. full source map)
 	output: {
 		path: path.join(__dirname, 'public'), // path is a node module that just resolves UNIX style relative paths
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: '/public/'
 	},
 	devServer: {
+		hot: true,
 		publicPath: '/public/',
 		historyApiFallback: true // let the client worry about the routing (if the dev server doesnt recogonizes anything it just sends it down to the client) || actually patched for development : a dev trick
 	},
@@ -21,6 +29,7 @@ module.exports = {
 		reasons: true,
 		chunks: true
 	},
+	plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
 	module: {
 		rules: [
 			{
@@ -36,3 +45,4 @@ module.exports = {
 		]
 	}
 };
+

@@ -1,27 +1,20 @@
+// ClientApp is the place for browser stuff
+// Server side rendering or to interact with the browser, just messing with the browser and be assured that does not affect the node
+// Example : For Google Analytics code this would be a great place
+// Install and use grounds keeper to remove code when shipping to production
+
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Landing from './Landing';
-import Search from './Search';
+import App from './App';
 
-const FourOhFour = () => (
-  <h1>
-    <span>404</span>
-  </h1>
-);
+const renderApp = () => {
+  render(<App />, document.getElementById('app'));
+};
+renderApp();
 
-// Switch to render exactly one component and make sure 404 component is the last one
-
-const App = () => (
-  <BrowserRouter>
-    <div className="app">
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/search" component={Search} />
-        <Route component={FourOhFour} />
-      </Switch>
-    </div>
-  </BrowserRouter>
-);
-
-render(<App />, document.getElementById('app'));
+if (module.hot) {
+  // module is a webpack thing : specific to webpack
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
+}
