@@ -3,18 +3,20 @@
 // Example : For Google Analytics code this would be a great place
 // Install and use grounds keeper to remove code when shipping to production
 
+// @flow
+
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
 
 const renderApp = () => {
-  render(<App />, document.getElementById('app'));
+	render(<App />, document.getElementById('app'));
 };
 renderApp();
 
 if (module.hot) {
-  // module is a webpack thing : specific to webpack
-  module.hot.accept('./App', () => {
-    renderApp();
-  });
+	// module is a webpack thing : specific to webpack
+	module.hot.accept('./App', () => {
+		renderApp();
+	});
 }

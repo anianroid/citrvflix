@@ -18,6 +18,7 @@ class Search extends Component {
 
 	// Transform class properties still in 2
 
+	// Flow is gonna type your state according to the initial values passed here below
 	state = {
 		searchTerm: ''
 	};
