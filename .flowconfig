@@ -1,0 +1,13 @@
+[ignore]
+<PROJECT_ROOT>/node_modules/styled-components/*
+<PROJECT_ROOT>/node_modules/table/*
+<PROJECT_ROOT>/node_modules/inquirer/*
+<PROJECT_ROOT>/node_modules/eslint/*
+<PROJECT_ROOT>/flow-typed/npm/*
+
+
+[include]
+
+[libs]
+
+[options]

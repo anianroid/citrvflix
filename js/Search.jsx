@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import ShowCard from './ShowCard';
 import preload from '../data.json';
@@ -19,7 +21,7 @@ class Search extends Component {
 	state = {
 		searchTerm: ''
 	};
-	handleSearchTermChange = event => {
+	handleSearchTermChange = (event: SyntheticKeyboardEvent & { target: HTMLInputElement }) => {
 		// event is a synthetic event not exactly a DOM event. For performance. It's an event but not the one you think!
 		this.setState({ searchTerm: event.target.value });
 	};
